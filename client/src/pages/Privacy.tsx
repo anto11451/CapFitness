@@ -49,7 +49,7 @@ export default function Privacy() {
           <h2 className="text-2xl font-semibold text-primary">4. Your Rights</h2>
           <p>
             Under DPDPA, you may request access, correction, or deletion of your data at any time 
-            by emailing contact@capsfitness.online.
+            by emailing anto.anand111@gmail.com
           </p>
 
           <h2 className="text-2xl font-semibold text-primary">5. Consent</h2>
@@ -61,7 +61,7 @@ export default function Privacy() {
           <h2 className="text-2xl font-semibold text-primary">6. Contact Us</h2>
           <p>
             For questions or requests: <br />
-            📧 <span className="text-primary">contact@capsfitness.online</span>
+            📧 <span className="text-primary">anto.anand111@gmail.com</span>
           </p>
         </div>
       </div>
