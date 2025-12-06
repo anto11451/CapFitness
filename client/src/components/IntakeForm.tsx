@@ -42,6 +42,8 @@ export interface FormData {
   foodsLove: string[];
   foodsAvoid: string[];
   additionalNotes: string;
+  privacyAccepted: false;
+
 }
 
 const TOTAL_STEPS = 5;
