@@ -196,10 +196,6 @@ export default function Footer() {
       </motion.button>
 
     </div>
-
-    <p className="text-xs text-muted-foreground/70 italic">
-      “Your journey starts the moment you decide not to quit.”
-    </p>
   </div>
 </div>
 
