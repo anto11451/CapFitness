@@ -160,6 +160,24 @@ export default function Footer() {
           </p>
         </div>
       </div>
+    <div className="mt-8 border-t border-border/40 pt-6">
+  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+    <div className="flex gap-6 text-sm text-muted-foreground">
+      <a href="/privacy" className="hover:text-primary transition-colors">
+        Privacy Policy
+      </a>
+      <a href="/terms" className="hover:text-primary transition-colors">
+        Terms & Conditions
+      </a>
+    </div>
+
+    <p className="text-xs text-muted-foreground/70 italic">
+      “Your journey starts the moment you decide not to quit.”
+    </p>
+  </div>
+</div>
+
+
     </footer>
   );
 }
