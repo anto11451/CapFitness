@@ -61,7 +61,7 @@ export default function Terms() {
           <h2 className="text-2xl font-semibold text-primary">6. Contact Us</h2>
           <p>
             For questions: <br />
-            📧 <span className="text-primary">contact@capsfitness.online</span>
+            📧 <span className="text-primary">anto.anand111@gmail.com</span>
           </p>
         </div>
       </div>
