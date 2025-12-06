@@ -264,12 +264,11 @@ export default function ReviewStep({ formData, onEdit }: ReviewStepProps) {
 <Card className="border border-primary/30">
   <CardContent className="py-4">
     <label className="flex items-start gap-3 cursor-pointer">
-      <input
-        type="checkbox"
-        checked={formData.privacyAccepted}
-        onChange={() => onEdit(6)} 
-        className="mt-1 w-5 h-5 accent-primary cursor-pointer"
-      />
+  <input
+  type="checkbox"
+  checked={formData.privacyAccepted}
+  onChange={(e) => updateFormData({ privacyAccepted: e.target.checked })}
+/>
       <p className="text-sm text-muted-foreground leading-5">
         I agree to the{" "}
         <a href="/privacy" target="_blank" className="text-primary underline">
