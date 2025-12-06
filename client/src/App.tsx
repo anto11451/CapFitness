@@ -19,7 +19,6 @@ import NotFound from "@/pages/not-found";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 
-
 function Router() {
   return (
     <Switch>
@@ -34,10 +33,13 @@ function Router() {
       <Route path="/calculators" component={Calculators} />
       <Route path="/knowledge" component={Knowledge} />
       <Route path="/quiz" component={Quiz} />
-      <Route component={NotFound} />
+
+      {/* ✅ These MUST come before NotFound */}
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
 
+      {/* ❗ Always put NotFound LAST */}
+      <Route component={NotFound} />
     </Switch>
   );
 }
