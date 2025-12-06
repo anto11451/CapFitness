@@ -118,43 +118,65 @@ export default function IntakeForm() {
     }
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    const payload = {
-      _secret: "CapSecret2025",
-      formId: "Cap-Fitness-Intake",
-      Name: formData.name,
-      Age: formData.age,
-      Gender: formData.gender,
-      Phone: formData.phone,
-      Email: formData.email,
-      KnownMedicalConditions: formData.medicalConditions,
-      OnMedications: formData.onMedications ? "Yes" : "No",
-      PastSurgeries: formData.pastSurgeries ? "Yes" : "No",
-      ConsultedDoctor: formData.consultedDoctor ? "Yes" : "No",
-      Height: formData.height,
-      Weight: formData.weight,
-      SleepHours: formData.sleepHours,
-      SittingHours: formData.sittingHours,
-      StressLevel: formData.stressLevel,
-      ActivityLevel: formData.activityLevel,
-      CommitmentLevel: formData.daysPerWeek,
-      PrimaryGoal: formData.primaryGoal,
-      ShortTermGoal: formData.shortTermGoal,
-      LongTermGoal: formData.longTermGoal,
-      Motivation: formData.motivation,
-      TrainingStyle: formData.trainingStyle,
-      DaysPerWeek: formData.daysPerWeek,
-      EquipmentList: formData.equipment.join(", "),
-      EatingPattern: formData.eatingPattern,
-      FoodsYouLove: formData.foodsLove.join(", "),
-      FoodsYouAvoid: formData.foodsAvoid.join(", "),
-      AdditionalNotes: formData.additionalNotes,
-      if (!formData.privacyAccepted) {
-  alert("Please accept the Privacy Policy and Terms before submitting.");
-  return;
-}
-    };
+ const handleSubmit = async () => {
+
+  // ❗ 1. Validate privacy checkbox BEFORE sending any data
+  if (!formData.privacyAccepted) {
+    alert("Please accept the Privacy Policy and Terms before submitting.");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  const payload = {
+    _secret: "CapSecret2025",
+    formId: "Cap-Fitness-Intake",
+    Name: formData.name,
+    Age: formData.age,
+    Gender: formData.gender,
+    Phone: formData.phone,
+    Email: formData.email,
+    KnownMedicalConditions: formData.medicalConditions,
+    OnMedications: formData.onMedications ? "Yes" : "No",
+    PastSurgeries: formData.pastSurgeries ? "Yes" : "No",
+    ConsultedDoctor: formData.consultedDoctor ? "Yes" : "No",
+    Height: formData.height,
+    Weight: formData.weight,
+    SleepHours: formData.sleepHours,
+    SittingHours: formData.sittingHours,
+    StressLevel: formData.stressLevel,
+    ActivityLevel: formData.activityLevel,
+    CommitmentLevel: formData.daysPerWeek,
+    PrimaryGoal: formData.primaryGoal,
+    ShortTermGoal: formData.shortTermGoal,
+    LongTermGoal: formData.longTermGoal,
+    Motivation: formData.motivation,
+    TrainingStyle: formData.trainingStyle,
+    DaysPerWeek: formData.daysPerWeek,
+    EquipmentList: formData.equipment.join(", "),
+    EatingPattern: formData.eatingPattern,
+    FoodsYouLove: formData.foodsLove.join(", "),
+    FoodsYouAvoid: formData.foodsAvoid.join(", "),
+    AdditionalNotes: formData.additionalNotes,
+  };
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    setIsSubmitted(true);
+  } catch (error) {
+    console.error("Google Sheets submit error:", error);
+    alert("Error submitting intake. Please try again.");
+  }
+
+  setIsSubmitting(false);
+};
+
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
