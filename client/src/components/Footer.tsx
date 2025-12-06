@@ -1,11 +1,6 @@
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { 
-  Dumbbell, 
-  Mail, 
-  Instagram, 
-  ArrowRight
-} from "lucide-react";
+import { Dumbbell, Mail, Instagram, ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 const footerLinks = [
@@ -19,23 +14,23 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { 
-    name: "Instagram", 
-    icon: Instagram, 
+  {
+    name: "Instagram",
+    icon: Instagram,
     href: "https://instagram.com/anto_mathew1",
-    color: "hover:text-pink-500 hover:shadow-[0_0_10px_#ec4899]"
+    color: "hover:text-pink-500 hover:shadow-[0_0_10px_#ec4899]",
   },
-  { 
-    name: "WhatsApp", 
-    icon: FaWhatsapp, 
+  {
+    name: "WhatsApp",
+    icon: FaWhatsapp,
     href: "https://wa.me/+919136331206",
-    color: "hover:text-green-500 hover:shadow-[0_0_10px_#22c55e]"
+    color: "hover:text-green-500 hover:shadow-[0_0_10px_#22c55e]",
   },
-  { 
-    name: "Email", 
-    icon: Mail, 
+  {
+    name: "Email",
+    icon: Mail,
     href: "mailto:anto.anand111@gmail.com",
-    color: "hover:text-accent hover:shadow-[0_0_10px_hsl(var(--accent))]"
+    color: "hover:text-accent hover:shadow-[0_0_10px_hsl(var(--accent))]",
   },
 ];
 
@@ -46,18 +41,14 @@ export default function Footer() {
     <footer className="relative border-t border-border/50 bg-card/50 backdrop-blur-sm">
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
 
-      {/* MAIN FOOTER WRAPPER */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        
-        {/* GRID CONTENT */}
+
+        {/* TOP GRID */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          
+
           {/* LOGO + ABOUT */}
           <div className="md:col-span-2 space-y-4">
-            <motion.div 
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.02 }}
-            >
+            <motion.div className="flex items-center gap-2" whileHover={{ scale: 1.02 }}>
               <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center neon-border">
                 <Dumbbell className="w-7 h-7 text-primary" />
               </div>
@@ -67,7 +58,7 @@ export default function Footer() {
             </motion.div>
 
             <p className="text-muted-foreground max-w-md">
-              Transform your body, elevate your mind, achieve your goals.  
+              Transform your body, elevate your mind, achieve your goals.
               Personalized fitness coaching backed by science and experience.
             </p>
 
@@ -81,12 +72,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`
-                      w-10 h-10 rounded-lg bg-muted/50 
-                      flex items-center justify-center
-                      text-muted-foreground transition-all
-                      ${social.color}
-                    `}
+                    className={`w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground transition-all ${social.color}`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -99,9 +85,7 @@ export default function Footer() {
 
           {/* QUICK LINKS */}
           <div className="space-y-4">
-            <h3 className="font-display font-semibold text-lg text-foreground">
-              Quick Links
-            </h3>
+            <h3 className="font-display font-semibold text-lg text-foreground">Quick Links</h3>
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.path}>
@@ -120,13 +104,10 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div className="space-y-4">
-            <h3 className="font-display font-semibold text-lg text-foreground">
-              Contact Us
-            </h3>
+            <h3 className="font-display font-semibold text-lg text-foreground">Contact Us</h3>
             <ul className="space-y-3">
-              
               <li>
-                <a 
+                <a
                   href="mailto:anto.anand111@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
                 >
@@ -136,7 +117,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <a 
+                <a
                   href="https://wa.me/+919136331206"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -148,7 +129,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <a 
+                <a
                   href="https://instagram.com/anto_mathew1"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -172,33 +153,27 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* PRIVACY + TERMS SECTION (Wouter Routing – FIXED) */}
-<div className="mt-8 border-t border-border/40 pt-6">
-  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-    
-    {/* Buttons instead of <a> to avoid 404 */}
-    <div className="flex gap-6 text-sm text-muted-foreground">
-      
-      <motion.button
-        onClick={() => setLocation("/privacy")}
-        className="hover:text-primary transition-colors"
-        whileHover={{ scale: 1.05 }}
-      >
-        Privacy Policy
-      </motion.button>
+        {/* PRIVACY + TERMS */}
+        <div className="mt-8 border-t border-border/40 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
 
-      <motion.button
-        onClick={() => setLocation("/terms")}
-        className="hover:text-primary transition-colors"
-        whileHover={{ scale: 1.05 }}
-      >
-        Terms & Conditions
-      </motion.button>
+            <div className="flex gap-6 text-sm text-muted-foreground">
+              <a href="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="hover:text-primary transition-colors">
+                Terms & Conditions
+              </a>
+            </div>
 
-    </div>
-  </div>
-</div>
+            <p className="text-xs text-muted-foreground/70 italic">
+              “Your journey starts the moment you decide not to quit.”
+            </p>
 
+          </div>
+        </div>
+
+      </div>
     </footer>
   );
 }
