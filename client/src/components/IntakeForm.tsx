@@ -150,6 +150,10 @@ export default function IntakeForm() {
       FoodsYouLove: formData.foodsLove.join(", "),
       FoodsYouAvoid: formData.foodsAvoid.join(", "),
       AdditionalNotes: formData.additionalNotes,
+      if (!formData.privacyAccepted) {
+  alert("Please accept the Privacy Policy and Terms before submitting.");
+  return;
+}
     };
 
     try {
