@@ -1,3 +1,4 @@
+// /src/components/IntakeForm.tsx
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -42,13 +43,13 @@ export interface FormData {
   foodsLove: string[];
   foodsAvoid: string[];
   additionalNotes: string;
-  privacyAccepted: false;
-
+  privacyAccepted: boolean;
 }
 
 const TOTAL_STEPS = 5;
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxIPA6NY5sx6bYco5LjpjDJ9RspDys-yXESJ851AUAPcnKQBtmihkJiGMGDVaMKOaC8GQ/exec";
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxIPA6NY5sx6bYco5LjpjDJ9RspDys-yXESJ851AUAPcnKQBtmihkJiGMGDVaMKOaC8GQ/exec";
 
 const stepTitles = [
   "Personal Details",
@@ -93,6 +94,7 @@ export default function IntakeForm() {
     foodsLove: [],
     foodsAvoid: [],
     additionalNotes: "",
+    privacyAccepted: false,
   });
 
   const updateFormData = (data: Partial<FormData>) => {
@@ -118,65 +120,46 @@ export default function IntakeForm() {
     }
   };
 
- const handleSubmit = async () => {
+  const handleSubmit = async () => {
+    // Validate privacy checkbox BEFORE sending any data
+    if (!formData.privacyAccepted) {
+      alert("Please accept the Privacy Policy and Terms before submitting.");
+      return;
+    }
 
-  // ❗ 1. Validate privacy checkbox BEFORE sending any data
-  if (!formData.privacyAccepted) {
-    alert("Please accept the Privacy Policy and Terms before submitting.");
-    return;
-  }
+    setIsSubmitting(true);
 
-  setIsSubmitting(true);
-
-  const payload = {
-    _secret: "CapSecret2025",
-    formId: "Cap-Fitness-Intake",
-    Name: formData.name,
-    Age: formData.age,
-    Gender: formData.gender,
-    Phone: formData.phone,
-    Email: formData.email,
-    KnownMedicalConditions: formData.medicalConditions,
-    OnMedications: formData.onMedications ? "Yes" : "No",
-    PastSurgeries: formData.pastSurgeries ? "Yes" : "No",
-    ConsultedDoctor: formData.consultedDoctor ? "Yes" : "No",
-    Height: formData.height,
-    Weight: formData.weight,
-    SleepHours: formData.sleepHours,
-    SittingHours: formData.sittingHours,
-    StressLevel: formData.stressLevel,
-    ActivityLevel: formData.activityLevel,
-    CommitmentLevel: formData.daysPerWeek,
-    PrimaryGoal: formData.primaryGoal,
-    ShortTermGoal: formData.shortTermGoal,
-    LongTermGoal: formData.longTermGoal,
-    Motivation: formData.motivation,
-    TrainingStyle: formData.trainingStyle,
-    DaysPerWeek: formData.daysPerWeek,
-    EquipmentList: formData.equipment.join(", "),
-    EatingPattern: formData.eatingPattern,
-    FoodsYouLove: formData.foodsLove.join(", "),
-    FoodsYouAvoid: formData.foodsAvoid.join(", "),
-    AdditionalNotes: formData.additionalNotes,
-  };
-
-  try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    setIsSubmitted(true);
-  } catch (error) {
-    console.error("Google Sheets submit error:", error);
-    alert("Error submitting intake. Please try again.");
-  }
-
-  setIsSubmitting(false);
-};
-
+    const payload = {
+      _secret: "CapSecret2025",
+      formId: "Cap-Fitness-Intake",
+      Name: formData.name,
+      Age: formData.age,
+      Gender: formData.gender,
+      Phone: formData.phone,
+      Email: formData.email,
+      KnownMedicalConditions: formData.medicalConditions,
+      OnMedications: formData.onMedications ? "Yes" : "No",
+      PastSurgeries: formData.pastSurgeries ? "Yes" : "No",
+      ConsultedDoctor: formData.consultedDoctor ? "Yes" : "No",
+      Height: formData.height,
+      Weight: formData.weight,
+      SleepHours: formData.sleepHours,
+      SittingHours: formData.sittingHours,
+      StressLevel: formData.stressLevel,
+      ActivityLevel: formData.activityLevel,
+      CommitmentLevel: formData.daysPerWeek,
+      PrimaryGoal: formData.primaryGoal,
+      ShortTermGoal: formData.shortTermGoal,
+      LongTermGoal: formData.longTermGoal,
+      Motivation: formData.motivation,
+      TrainingStyle: formData.trainingStyle,
+      DaysPerWeek: formData.daysPerWeek,
+      EquipmentList: formData.equipment.join(", "),
+      EatingPattern: formData.eatingPattern,
+      FoodsYouLove: formData.foodsLove.join(", "),
+      FoodsYouAvoid: formData.foodsAvoid.join(", "),
+      AdditionalNotes: formData.additionalNotes,
+    };
 
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -191,6 +174,7 @@ export default function IntakeForm() {
       console.error("Google Sheets submit error:", error);
       alert("Error submitting intake. Please try again.");
     }
+
     setIsSubmitting(false);
   };
 
@@ -213,7 +197,7 @@ export default function IntakeForm() {
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto">
-        <motion.div 
+        <motion.div
           className="mb-8 space-y-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -231,10 +215,10 @@ export default function IntakeForm() {
               {currentStep === 6 ? "Review" : `Step ${currentStep} of ${TOTAL_STEPS}`}
             </span>
           </div>
-          
+
           <div className="relative">
             <Progress value={progressValue} className="h-2 bg-muted/50" data-testid="progress-intake" />
-            <div 
+            <div
               className="absolute top-0 left-0 h-2 rounded-full bg-primary neon-glow transition-all duration-500"
               style={{ width: `${progressValue}%` }}
             />
@@ -250,32 +234,18 @@ export default function IntakeForm() {
         >
           <Card className="bg-card/80 backdrop-blur-sm border border-primary/30 neon-border overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none" />
-            
+
             <CardHeader className="relative space-y-1 pb-6">
-              <CardTitle className="text-xl md:text-2xl font-display">
-                {stepTitles[currentStep - 1]}
-              </CardTitle>
+              <CardTitle className="text-xl md:text-2xl font-display">{stepTitles[currentStep - 1]}</CardTitle>
             </CardHeader>
-            
+
             <CardContent className="relative space-y-6">
-              {currentStep === 1 && (
-                <Step1Personal formData={formData} updateFormData={updateFormData} />
-              )}
-              {currentStep === 2 && (
-                <Step2Body formData={formData} updateFormData={updateFormData} />
-              )}
-              {currentStep === 3 && (
-                <Step3Health formData={formData} updateFormData={updateFormData} />
-              )}
-              {currentStep === 4 && (
-                <Step4Goals formData={formData} updateFormData={updateFormData} />
-              )}
-              {currentStep === 5 && (
-                <Step5Nutrition formData={formData} updateFormData={updateFormData} />
-              )}
-              {currentStep === 6 && (
-                <ReviewStep formData={formData} onEdit={handleEdit} />
-              )}
+              {currentStep === 1 && <Step1Personal formData={formData} updateFormData={updateFormData} />}
+              {currentStep === 2 && <Step2Body formData={formData} updateFormData={updateFormData} />}
+              {currentStep === 3 && <Step3Health formData={formData} updateFormData={updateFormData} />}
+              {currentStep === 4 && <Step4Goals formData={formData} updateFormData={updateFormData} />}
+              {currentStep === 5 && <Step5Nutrition formData={formData} updateFormData={updateFormData} />}
+              {currentStep === 6 && <ReviewStep formData={formData} onEdit={handleEdit} />}
 
               <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-border/30">
                 <Button
