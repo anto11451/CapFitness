@@ -145,7 +145,7 @@ export default function LandingPage() {
               </Button>
 
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              One2One Online Coaching, <br className="hidden md:block" />
+              One2One Online Coaching <br className="hidden md:block" />
               <span className="text-foreground font-medium"></span>
             </p>
               
