@@ -16,6 +16,9 @@ import Calculators from "@/pages/Calculators";
 import Knowledge from "@/pages/Knowledge";
 import Quiz from "@/pages/Quiz";
 import NotFound from "@/pages/not-found";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+
 
 function Router() {
   return (
@@ -32,6 +35,9 @@ function Router() {
       <Route path="/knowledge" component={Knowledge} />
       <Route path="/quiz" component={Quiz} />
       <Route component={NotFound} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+
     </Switch>
   );
 }
