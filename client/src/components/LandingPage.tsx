@@ -143,6 +143,11 @@ export default function LandingPage() {
                 Start Your Journey
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
+
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+              One2One Online Coaching, <br className="hidden md:block" />
+              <span className="text-foreground font-medium"></span>
+            </p>
               
             </motion.div>
           </motion.div>
