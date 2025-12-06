@@ -1,9 +1,10 @@
+// /src/components/intake-steps/ReviewStep.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Edit2 } from "lucide-react";
-import { FormData } from "../IntakeForm";
+import type { FormData } from "../IntakeForm";
 
 interface ReviewStepProps {
   formData: FormData;
@@ -260,30 +261,6 @@ export default function ReviewStep({ formData, onEdit }: ReviewStepProps) {
           )}
         </CardContent>
       </Card>
-      {/* PRIVACY CONSENT */}
-<Card className="border border-primary/30">
-  <CardContent className="py-4">
-    <label className="flex items-start gap-3 cursor-pointer">
-  <input
-  type="checkbox"
-  checked={formData.privacyAccepted}
-  onChange={(e) => updateFormData({ privacyAccepted: e.target.checked })}
-/>
-      <p className="text-sm text-muted-foreground leading-5">
-        I agree to the{" "}
-        <a href="/privacy" target="_blank" className="text-primary underline">
-          Privacy Policy
-        </a>{" "}
-        and{" "}
-        <a href="/terms" target="_blank" className="text-primary underline">
-          Terms & Conditions
-        </a>
-        . I consent to the collection & processing of my information as per DPDPA (India).
-      </p>
-    </label>
-  </CardContent>
-</Card>
-
     </div>
   );
 }
