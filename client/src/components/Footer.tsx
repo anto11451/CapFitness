@@ -172,25 +172,37 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* PRIVACY + TERMS (Correct Position) */}
-        <div className="mt-8 border-t border-border/40 pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex gap-6 text-sm text-muted-foreground">
-              <a href="/privacy" className="hover:text-primary transition-colors">
-                Privacy Policy
-              </a>
-              <a href="/terms" className="hover:text-primary transition-colors">
-                Terms & Conditions
-              </a>
-            </div>
+        {/* PRIVACY + TERMS SECTION (Wouter Routing – FIXED) */}
+<div className="mt-8 border-t border-border/40 pt-6">
+  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+    
+    {/* Buttons instead of <a> to avoid 404 */}
+    <div className="flex gap-6 text-sm text-muted-foreground">
+      
+      <motion.button
+        onClick={() => setLocation("/privacy")}
+        className="hover:text-primary transition-colors"
+        whileHover={{ scale: 1.05 }}
+      >
+        Privacy Policy
+      </motion.button>
 
-            <p className="text-xs text-muted-foreground/70 italic">
-              “Your journey starts the moment you decide not to quit.”
-            </p>
-          </div>
-        </div>
+      <motion.button
+        onClick={() => setLocation("/terms")}
+        className="hover:text-primary transition-colors"
+        whileHover={{ scale: 1.05 }}
+      >
+        Terms & Conditions
+      </motion.button>
 
-      </div>
+    </div>
+
+    <p className="text-xs text-muted-foreground/70 italic">
+      “Your journey starts the moment you decide not to quit.”
+    </p>
+  </div>
+</div>
+
     </footer>
   );
 }
