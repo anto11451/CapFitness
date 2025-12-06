@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import { 
   Dumbbell, 
   Mail, 
-  Phone, 
   Instagram, 
-  MessageCircle,
   ArrowRight
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
@@ -47,9 +45,14 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-border/50 bg-card/50 backdrop-blur-sm">
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
-      
+
+      {/* MAIN FOOTER WRAPPER */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        {/* GRID CONTENT */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          {/* LOGO + ABOUT */}
           <div className="md:col-span-2 space-y-4">
             <motion.div 
               className="flex items-center gap-2"
@@ -62,10 +65,13 @@ export default function Footer() {
                 Cap's FITNESS
               </span>
             </motion.div>
+
             <p className="text-muted-foreground max-w-md">
-              Transform your body, elevate your mind, achieve your goals. 
-              We provide personalized fitness coaching backed by science and experience.
+              Transform your body, elevate your mind, achieve your goals.  
+              Personalized fitness coaching backed by science and experience.
             </p>
+
+            {/* SOCIAL ICONS */}
             <div className="flex gap-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -91,6 +97,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* QUICK LINKS */}
           <div className="space-y-4">
             <h3 className="font-display font-semibold text-lg text-foreground">
               Quick Links
@@ -111,20 +118,23 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* CONTACT */}
           <div className="space-y-4">
             <h3 className="font-display font-semibold text-lg text-foreground">
               Contact Us
             </h3>
             <ul className="space-y-3">
+              
               <li>
                 <a 
-                  href="mailto:contact@capsfitness.com"
+                  href="mailto:anto.anand111@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4 text-primary" />
                   anto.anand111@gmail.com
                 </a>
               </li>
+
               <li>
                 <a 
                   href="https://wa.me/+919136331206"
@@ -136,6 +146,7 @@ export default function Footer() {
                   WhatsApp Support
                 </a>
               </li>
+
               <li>
                 <a 
                   href="https://instagram.com/anto_mathew1"
@@ -151,6 +162,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* COPYRIGHT */}
         <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center md:text-left">
             © {new Date().getFullYear()} Cap's Fitness. All rights reserved.
@@ -159,25 +171,26 @@ export default function Footer() {
             "The change begins the moment you get back up and keep pushing forward."
           </p>
         </div>
+
+        {/* PRIVACY + TERMS (Correct Position) */}
+        <div className="mt-8 border-t border-border/40 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex gap-6 text-sm text-muted-foreground">
+              <a href="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="hover:text-primary transition-colors">
+                Terms & Conditions
+              </a>
+            </div>
+
+            <p className="text-xs text-muted-foreground/70 italic">
+              “Your journey starts the moment you decide not to quit.”
+            </p>
+          </div>
+        </div>
+
       </div>
-    <div className="mt-8 border-t border-border/40 pt-6">
-  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-    <div className="flex gap-6 text-sm text-muted-foreground">
-      <a href="/privacy" className="hover:text-primary transition-colors">
-        Privacy Policy
-      </a>
-      <a href="/terms" className="hover:text-primary transition-colors">
-        Terms & Conditions
-      </a>
-    </div>
-
-    <p className="text-xs text-muted-foreground/70 italic">
-      “Your journey starts the moment you decide not to quit.”
-    </p>
-  </div>
-</div>
-
-
     </footer>
   );
 }
