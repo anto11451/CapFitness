@@ -4,6 +4,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import ScrollToTop from "@/components/ScrollToTop";
+
 import Home from "@/pages/Home";
 import Intake from "@/pages/Intake";
 import Pricing from "@/pages/Pricing";
@@ -34,11 +36,11 @@ function Router() {
       <Route path="/knowledge" component={Knowledge} />
       <Route path="/quiz" component={Quiz} />
 
-      {/* ✅ These MUST come before NotFound */}
+      {/* Static pages */}
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
 
-      {/* ❗ Always put NotFound LAST */}
+      {/* Catch-all */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -49,6 +51,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
+
+        {/* 🔥 This forces scroll to top on every route change */}
+        <ScrollToTop />
+
         <Router />
       </TooltipProvider>
     </QueryClientProvider>
